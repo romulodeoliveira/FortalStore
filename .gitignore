@@ -1,0 +1,95 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.csproj.user
+*.csproj.Transient.*
+
+# Azure Pipelines
+.vsts/
+*.log
+*.vspx
+
+# Logs
+*.log
+logs/
+
+# NuGet Packages
+*.nupkg
+packages/
+# The following line can be removed if you have `Enable NuGet Package Restore` enabled
+# for your project.
+packages/*
+!packages/*.md
+!packages/repositories.config
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Rider files
+.idea/
+
+# DotNet core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+# Visual Studio Code
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Unix
+*.DS_Store
+
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Rider / Resharper
+.idea/
+*.sln.iml
+
+# Temporary files
+~$*
+
+# Publish outputs
+publish/
+wwwroot/
+
+# Local tool configuration
+.vs/
+
+# Dependency Manager
+global.json
+
+# Migrations
+Migrations/
