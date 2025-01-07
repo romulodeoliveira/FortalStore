@@ -20,4 +20,8 @@
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FortalStore.Domain\FortalStore.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
