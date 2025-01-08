@@ -10,7 +10,6 @@ public class Order
         Customer customer)
     {
         Customer = customer;
-        Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
         CreateDate = DateTime.Now;
         Status = EOrderStatus.Created;
         _items = new List<OrderItem>();
@@ -34,5 +33,49 @@ public class Order
         _deliveries.Add(delivery);
     }
     
-    public void Place() { }
+    // criar um pedido
+    public void Place()
+    {
+        // gera o número do pedido
+        Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
+
+        // validar
+    }
+    
+    // pagar um pedido
+    public void Pay()
+    {
+        Status = EOrderStatus.Paid;
+    }
+    
+    // enviar um pedido
+    public void Ship()
+    {
+        // divide os pedidos em entregas diferentes
+        var deliveries = new List<Delivery>();
+        deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
+        var count = 1;
+        foreach (var item in _items)
+        {
+            if (count == 5)
+            {
+                count = 1;
+                deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
+            }
+            count++;
+        }
+        
+        // envia todas as entregas
+        deliveries.ForEach(delivery => delivery.Ship());
+        
+        // adiciona as entregas aos pedidos 
+        deliveries.ForEach(delivery => _deliveries.Add(delivery));
+    }
+    
+    // cancelar um pedido
+    public void Cancel()
+    {
+        Status = EOrderStatus.Canceled;
+        _deliveries.ToList().ForEach(delivery => delivery.Cancel());
+    }
 }
