@@ -2,7 +2,7 @@ using FortalStore.Domain.StoreContext.Enums;
 
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class Delivery
+public class Delivery : BaseEntity
 {
     public Delivery(DateTime estimatedDeliveryDate)
     {

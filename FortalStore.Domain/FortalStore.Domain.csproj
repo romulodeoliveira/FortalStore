@@ -11,4 +11,8 @@
     <Folder Include="InventoryContext\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.5" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class Product
+public class Product  : BaseEntity
 {
     public Product(
         string title, 

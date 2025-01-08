@@ -1,7 +1,7 @@
 using FortalStore.Domain.StoreContext.ValueObjects;
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class Customer
+public class Customer  : BaseEntity
 {
     private readonly IList<Address> _addresses;
     public Customer(

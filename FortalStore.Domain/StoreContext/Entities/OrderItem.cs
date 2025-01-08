@@ -1,6 +1,9 @@
+using Flunt.Notifications;
+using Flunt.Validations;
+
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class OrderItem
+public class OrderItem : BaseEntity
 {
     public OrderItem(
         Product product, 
@@ -9,6 +12,12 @@ public class OrderItem
         Product = product;
         Quantity = quantity;
         Price = product.Price;
+        
+        AddNotifications(
+            new Contract<OrderItem>()
+                .Requires()
+                .IsTrue(product.QuantityOnHand < quantity, "Quantity", "Produto fora de estoque.")
+        );
     }
 
     public Product Product { get; private set; }

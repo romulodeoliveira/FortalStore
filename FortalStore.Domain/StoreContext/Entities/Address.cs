@@ -2,7 +2,7 @@ using FortalStore.Domain.StoreContext.Enums;
 
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class Address
+public class Address  : BaseEntity
 {
     public Address(
         string street, 

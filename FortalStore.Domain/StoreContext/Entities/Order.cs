@@ -1,8 +1,10 @@
+using Flunt.Notifications;
+using Flunt.Validations;
 using FortalStore.Domain.StoreContext.Enums;
 
 namespace FortalStore.Domain.StoreContext.Entities;
 
-public class Order
+public class Order  : BaseEntity
 {
     private readonly IList<OrderItem> _items;
     private readonly IList<Delivery> _deliveries;
@@ -22,15 +24,16 @@ public class Order
     public EOrderStatus Status { get; private set; }
     public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
     public IReadOnlyCollection<Delivery> Deliveries => _deliveries.ToArray();
-
-    public void AddItem(OrderItem item)
-    {
-        _items.Add(item);
-    }
     
-    public void AddDelivery(Delivery delivery)
+    public void AddItem(Product product, decimal quantity)
     {
-        _deliveries.Add(delivery);
+        var item = new OrderItem(product, quantity);
+        _items.Add(item);
+
+        AddNotifications(
+            new Contract<Order>()
+                .Requires()
+                .IsTrue(quantity > product.QuantityOnHand, "OrderItem", $"Produto {product.ToString()} não tem {quantity} itens em estoque."));
     }
     
     // criar um pedido
@@ -40,6 +43,10 @@ public class Order
         Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
 
         // validar
+        AddNotifications(
+            new Contract<Order>()
+                .Requires()
+                .IsTrue(_items.Count == 0, "Order", "Este pedido não possui itens."));
     }
     
     // pagar um pedido
