@@ -1,8 +1,17 @@
-namespace FortalStore.Domain.StoreContext;
+namespace FortalStore.Domain.StoreContext.Entities;
 
 public class OrderItem
 {
+    public OrderItem(
+        Product product, 
+        decimal quantity)
+    {
+        Product = product;
+        Quantity = quantity;
+        Price = product.Price;
+    }
+
     public Product Product { get; private set; }
-    public string Quantity { get; private set; }
-    public string Price { get; private set; }
+    public decimal Quantity { get; private set; }
+    public decimal Price { get; private set; }
 }
